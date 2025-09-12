@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kwasi Boateng - Business Analyst</title>
+  <meta name="description" content="Kwasi Boateng - Business Analyst focused on analytics, process optimization, and strategic reporting." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0f1724;
+      --card: #0b1220;
+      --text: #e6eef8;
+      --muted: #9fb0c7;
+      --accent1: #6b5cff;
+      --accent2: #00d4ff;
+      --glass: rgba(255,255,255,0.04);
+      --radius: 12px;
+      --maxw: 1200px;
+    }
+    [data-theme="light"]{
+      --bg: #f5f8fb;
+      --card: #ffffff;
+      --text: #0b1220;
+      --muted: #475569;
+      --glass: rgba(2,6,23,0.04);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:
+        radial-gradient(700px 300px at 10% 10%, rgba(107,92,255,0.06), transparent),
+        var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      justify-content:center;
+      padding:28px;
+    }
+
+    .site{width:100%;max-width:var(--maxw)}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{
+      width:56px;height:56px;border-radius:10px;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));color:white;font-weight:800;font-size:20px;
+      box-shadow:0 12px 30px rgba(11,18,32,0.45);
+    }
+    nav{display:flex;gap:10px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600}
+    nav a:hover{color:var(--text);background:var(--glass)}
+
+    .controls{display:flex;gap:8px;align-items:center}
+    .btn{
+      background:transparent;border:1px solid var(--glass);padding:8px 12px;border-radius:10px;color:var(--text);
+      cursor:pointer;font-weight:700
+    }
+    .cta{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;border:0}
+
+    .hero{
+      display:grid;grid-template-columns:1fr 320px;gap:20px;padding:28px;border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid var(--glass);
+      margin-bottom:22px;align-items:center;
+    }
+    .hero h1{font-size:28px;margin:0 0 8px}
+    .hero p{margin:0;color:var(--muted);line-height:1.5}
+    .metrics{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+    .metric{background:var(--card);border-radius:10px;padding:10px 12px;border:1px solid var(--glass);min-width:120px}
+    .metric strong{display:block;font-size:18px}
+    .avatar{width:320px;height:320px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:grid;place-items:center;color:white;font-size:20px;font-weight:700;box-shadow:0 20px 50px rgba(11,18,32,0.45)}
+
+    section{margin-bottom:28px}
+    .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:16px}
+    .section-title{font-weight:800;font-size:15px}
+
+    /* Projects grid */
+    .controls-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .chip{padding:8px 12px;border-radius:999px;border:1px solid var(--glass);background:transparent;color:var(--muted);cursor:pointer;font-weight:700}
+    .chip.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;border:0}
+
+    .search{
+      padding:10px 12px;border-radius:10px;border:1px solid var(--glass);background:transparent;color:var(--text);
+      min-width:210px
+    }
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+
+    .card{background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--glass);box-shadow:0 16px 40px rgba(2,6,23,0.4);display:flex;flex-direction:column;transform:translateY(28px);opacity:0;transition:all .6s cubic-bezier(.2,.9,.2,1)}
+    .card.reveal{transform:none;opacity:1}
+    .media{height:160px;background:#0b1220;display:block;overflow:hidden}
+    .media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+    .card:hover .media img{transform:scale(1.06)}
+    .card-body{padding:14px;display:flex;flex-direction:column;gap:10px}
+    .card h3{margin:0;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03);border:1px solid var(--glass);font-weight:700;color:var(--muted)}
+
+    /* skills */
+    .skill{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+    .bar{flex:1;height:10px;border-radius:999px;background:rgba(255,255,255,0.04);overflow:hidden;margin-left:12px}
+    .bar > i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));width:50%}
+
+    /* modal */
+    .backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.7);display:none;align-items:center;justify-content:center;padding:18px;z-index:120}
+    .modal{background:var(--card);width:100%;max-width:980px;border-radius:12px;overflow:hidden;border:1px solid var(--glass)}
+    .modal .inner{display:grid;grid-template-columns:1fr 360px}
+    .modal .media{height:100%;min-height:320px}
+    .modal .meta{padding:20px}
+    .close{position:absolute;right:14px;top:12px;background:transparent;border:0;color:var(--text);padding:8px;border-radius:8px;font-size:20px;cursor:pointer}
+
+    footer{color:var(--muted);text-align:center;padding-top:18px;border-top:1px solid var(--glass);font-size:13px}
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;align-items:start}
+      .avatar{width:100%;height:220px}
+      .modal .inner{grid-template-columns:1fr}
+    }
+
+    /* focus outline */
+    :focus{outline:3px solid rgba(107,92,255,0.16);outline-offset:3px}
+  </style>
+</head>
+<body>
+  <div class="site" id="app">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">KB</div>
+        <div>
+          <div style="font-weight:800">Kwasi Boateng</div>
+          <div style="font-size:13px;color:var(--muted)">Business Analyst - Analytics • Process • Strategy</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="controls">
+        <button id="themeToggle" class="btn" aria-pressed="false" title="Toggle theme">Toggle</button>
+        <a class="btn cta" href="mailto:kwasiboatenga@outlook.com?subject=Opportunity">Contact</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="about" class="hero" aria-labelledby="intro">
+      <div>
+        <h1 id="intro">Hi👋🏾 I'm Kwasi. I turn data into decisions.</h1>
+        <p>I partner with business leaders to define measurable goals, design analytical solutions, and deliver dashboards and processes that increase efficiency and revenue. My work focuses on clear requirements, robust reporting, and business impact.</p>
+
+        <div class="metrics" role="list" aria-label="Key metrics">
+          <div class="metric" role="listitem"><strong>8+</strong><span style="font-size:13px;color:var(--muted)">Years Experience</span></div>
+          <div class="metric" role="listitem"><strong>35</strong><span style="font-size:13px;color:var(--muted)">Projects Delivered</span></div>
+          <div class="metric" role="listitem"><strong>Avg. 18%</strong><span style="font-size:13px;color:var(--muted)">Efficiency Gain</span></div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="imgs/avatar-new.jpg" alt="Kwasi avatar portrait" style="width:240px;border-radius:50%;box-shadow:0 12px 40px rgba(2,6,23,0.35);">
+      </div>
+      <!-- <div class="avatar" aria-hidden="true">Business Analysis • Data</div> -->
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-label="Projects">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Select case studies</div>
+          <div style="font-size:13px;color:var(--muted)">Browse searchable, filterable project cards. Click any card for details.</div>
+        </div>
+
+        <div class="controls-row">
+          <input id="search" class="search" type="search" placeholder="Search projects (title, tech, tag)" aria-label="Search projects">
+          <div id="chips" role="tablist" aria-label="Filter by category">
+            <button class="chip active" data-cat="all" role="tab" aria-selected="true">All</button>
+            <button class="chip" data-cat="analytics" role="tab">Analytics</button>
+            <button class="chip" data-cat="reporting" role="tab">Reporting</button>
+            <button class="chip" data-cat="process" role="tab">Process</button>
+            <button class="chip" data-cat="strategy" role="tab">Strategy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid" id="grid" aria-live="polite"></div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-head">
+        <div class="section-title">Skills & tools</div>
+        <div style="font-size:13px;color:var(--muted)">Technical stack and proficiency</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:16px">
+        <div>
+          <div class="skill"><div style="font-weight:700">SQL</div><div class="bar" aria-hidden="true"><i style="width:92%"></i></div></div>
+          <div class="skill"><div style="font-weight:700">Power BI / Tableau</div><div class="bar" aria-hidden="true"><i style="width:86%"></i></div></div>
+          <div class="skill"><div style="font-weight:700">Excel / VBA</div><div class="bar" aria-hidden="true"><i style="width:90%"></i></div></div>
+          <div class="skill"><div style="font-weight:700">Process Mapping</div><div class="bar" aria-hidden="true"><i style="width:82%"></i></div></div>
+          <div class="skill"><div style="font-weight:700">Stakeholder Mgmt</div><div class="bar" aria-hidden="true"><i style="width:88%"></i></div></div>
+        </div>
+
+        <div style="background:var(--card);padding:16px;border-radius:12px;border:1px solid var(--glass)">
+          <div style="font-weight:800;margin-bottom:8px">Approach</div>
+          <ul style="color:var(--muted);line-height:1.6;margin:0 0 12px 18px">
+            <li>Define measurable KPIs</li>
+            <li>Rapid prototyping dashboards</li>
+            <li>Root-cause process analysis</li>
+            <li>Stakeholder-aligned delivery</li>
+          </ul>
+          <a class="btn" href="#contact" style="text-decoration:none;display:inline-block">Discuss a project</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-label="Contact">
+      <div class="section-head">
+        <div class="section-title">Contact</div>
+        <div style="font-size:13px;color:var(--muted)">Let's talk about how I can help your organisation.</div>
+      </div>
+
+      <form id="contactForm" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:720px">
+        <input name="name" placeholder="Your name" required style="padding:10px;border-radius:10px;border:1px solid var(--glass);background:transparent;color:var(--text)">
+        <input name="email" type="email" placeholder="Email" required style="padding:10px;border-radius:10px;border:1px solid var(--glass);background:transparent;color:var(--text)">
+        <input name="subject" placeholder="Subject" style="padding:10px;border-radius:10px;border:1px solid var(--glass);background:transparent;color:var(--text)" />
+        <textarea name="message" placeholder="Brief message" rows="3" style="grid-column:1 / -1;padding:10px;border-radius:10px;border:1px solid var(--glass);background:transparent;color:var(--text)"></textarea>
+
+        <div style="grid-column:1 / -1;display:flex;gap:10px;align-items:center">
+          <button type="submit" class="btn cta">Send</button>
+          <div style="color:var(--muted);font-size:13px">Or email: <a href="mailto:kwasiboatenga@outlook.com" style="color:var(--muted);text-decoration:underline">kwasiboatenga@outlook.com</a></div>
+        </div>
+      </form>
+    </section>
+
+    <footer>© <span id="year"></span> Kwasi Boateng - Business Analysis & Data Strategy</footer>
+  </div>
+
+  <!-- Modal (case study) -->
+  <div class="backdrop" id="backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="caseTitle">
+      <button class="close" id="closeModal" aria-label="Close case study">✕</button>
+      <div class="inner">
+        <div class="media" id="modalMedia"></div>
+        <div class="meta" id="modalMeta">
+          <h3 id="caseTitle"></h3>
+          <p id="caseSummary" style="color:var(--muted)"></p>
+
+          <div style="margin-top:12px">
+            <div style="font-weight:800">Challenge</div>
+            <p id="caseChallenge" style="color:var(--muted);margin-top:6px"></p>
+          </div>
+
+          <div style="margin-top:12px">
+            <div style="font-weight:800">Approach</div>
+            <p id="caseApproach" style="color:var(--muted);margin-top:6px"></p>
+          </div>
+
+          <div style="margin-top:12px">
+            <div style="font-weight:800">Impact</div>
+            <p id="caseImpact" style="color:var(--muted);margin-top:6px"></p>
+          </div>
+
+          <div style="margin-top:14px;display:flex;gap:8px">
+            <a id="caseDemo" class="btn" href="#" target="_blank" rel="noopener" style="text-decoration:none">View dashboard</a>
+            <button class="btn" id="caseClose">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ======= Data: projects ======= */
+    const PROJECTS = [
+      {
+        id: 1,
+        title: "Revenue Leakage Analysis — Logistics",
+        category: "analytics",
+        tags: ["SQL","Power BI","Cost Reduction"],
+        img: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1400&auto=format&fit=crop",
+        summary: "Identified revenue leakages in shipping manifests and automated KPI reporting for finance.",
+        challenge: "Manual reconciliation produced delays and missed chargebacks.",
+        approach: "Consolidated multiple source systems, built reconciliation logic in SQL and an automated Power BI dashboard.",
+        impact: "Recovered 7.4% of monthly revenue and reduced monthly close time by 3 days.",
+        demo: "#"
+      },
+      {
+        id: 2,
+        title: "Warehouse Process Rework",
+        category: "process",
+        tags: ["Process Mapping","Lean","Workshops"],
+        img: "https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=1400&auto=format&fit=crop",
+        summary: "Redesigned picking and staging workflows to improve throughput.",
+        challenge: "High rework and slow pick times during peak windows.",
+        approach: "Time-and-motion study, root-cause analysis, introduced kanban and revised SOPs.",
+        impact: "20% faster throughput, 18% fewer errors within 3 months.",
+        demo: "#"
+      },
+      {
+        id: 3,
+        title: "Customs Reporting Framework",
+        category: "reporting",
+        tags: ["ETL","Automation","Excel"],
+        img: "https://images.unsplash.com/photo-1581090461483-3b6d1b9b6d6d?q=80&w=1400&auto=format&fit=crop",
+        summary: "Automated customs reports and created a central reporting repository.",
+        challenge: "Regulatory reports were manually compiled with error-prone spreadsheets.",
+        approach: "Built ETL, scheduled export jobs and a consolidated reporting dashboard.",
+        impact: "40% reduction in manual effort; audit readiness improved.",
+        demo: "#"
+      },
+      {
+        id: 4,
+        title: "KPI Framework & OKR Alignment",
+        category: "strategy",
+        tags: ["OKR","KPI","Stakeholders"],
+        img: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1400&auto=format&fit=crop",
+        summary: "Defined KPI hierarchy aligned to strategic goals and built an executive dashboard.",
+        challenge: "Misaligned measurement across teams; leadership lacked single source of truth.",
+        approach: "Facilitated cross-functional workshops, mapped metrics to goals, prototyped executive dashboard.",
+        impact: "Improved decision-cycle time; clearer performance ownership.",
+        demo: "#"
+      },
+      {
+        id: 5,
+        title: "Claims Analytics — Root Cause",
+        category: "analytics",
+        tags: ["Python","SQL","Machine Learning"],
+        img: "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1400&auto=format&fit=crop",
+        summary: "Segmented claims data to identify high-risk cohorts and drivers.",
+        challenge: "Rising claims with no clear attribution to processes or vendors.",
+        approach: "Applied clustering to claims, produced actionable vendor insights and controls.",
+        impact: "Targeted interventions reduced claims by 12% over 6 months.",
+        demo: "#"
+      },
+      {
+        id: 6,
+        title: "Self-Service Reporting Enablement",
+        category: "reporting",
+        tags: ["Power BI","Training","Governance"],
+        img: "https://images.unsplash.com/photo-1526378720743-1c4d19fef3c6?q=80&w=1400&auto=format&fit=crop",
+        summary: "Established governance and templates for safe self-service reporting.",
+        challenge: "Data sprawl and inconsistent reports across teams.",
+        approach: "Created governance patterns, templates, and trained 40+ analysts.",
+        impact: "Reduced report duplication by 60% and accelerated insights delivery.",
+        demo: "#"
+      }
+    ];
+
+    /* ======= Render projects ======= */
+    const grid = document.getElementById('grid');
+    const search = document.getElementById('search');
+    const chips = document.getElementById('chips');
+    let activeCategory = 'all';
+    let query = '';
+
+    function placeholderSVG(title){
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 875"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#6b5cff"/><stop offset="100%" stop-color="#00d4ff"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><text x="60" y="430" font-family="Inter, Arial" font-size="48" fill="#ffffff">${escapeHtml(title)}</text></svg>`;
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+    function createCard(p){
+      const art = document.createElement('article');
+      art.className = 'card';
+      art.tabIndex = 0;
+      art.setAttribute('data-id', p.id);
+
+      const media = document.createElement('div'); media.className = 'media';
+      const img = document.createElement('img'); img.loading='lazy'; img.alt = p.title;
+      img.src = p.img;
+      img.addEventListener('error', ()=> img.src = placeholderSVG(p.title));
+      media.appendChild(img);
+
+      const body = document.createElement('div'); body.className = 'card-body';
+      const h3 = document.createElement('h3'); h3.textContent = p.title;
+      const pSummary = document.createElement('p'); pSummary.textContent = p.summary;
+      const tagWrap = document.createElement('div'); tagWrap.className = 'tags';
+      p.tags.forEach(t => { const span = document.createElement('span'); span.className='tag'; span.textContent = t; tagWrap.appendChild(span); });
+
+      const actions = document.createElement('div'); actions.style.marginTop='8px';
+      const btn = document.createElement('button'); btn.className='btn'; btn.textContent='View case'; btn.addEventListener('click', ()=> openModal(p.id));
+      actions.appendChild(btn);
+
+      body.appendChild(h3); body.appendChild(pSummary); body.appendChild(tagWrap); body.appendChild(actions);
+
+      art.appendChild(media); art.appendChild(body);
+
+      // keyboard enter/space opens modal
+      art.addEventListener('keydown', e => { if(e.key==='Enter' || e.key===' ') { e.preventDefault(); openModal(p.id); } });
+
+      return art;
+    }
+
+    function render(list){
+      grid.innerHTML = '';
+      if(list.length === 0){
+        const empty = document.createElement('div'); empty.style.color = getComputedStyle(document.documentElement).getPropertyValue('--muted'); empty.textContent = 'No projects found.';
+        grid.appendChild(empty); return;
+      }
+      list.forEach(p => grid.appendChild(createCard(p)));
+      revealOnScroll();
+    }
+
+    function matches(p){
+      const withinCat = activeCategory === 'all' || p.category === activeCategory;
+      const q = query.trim().toLowerCase();
+      if(!q) return withinCat;
+      const hay = (p.title + ' ' + p.summary + ' ' + p.tags.join(' ') + ' ' + p.category).toLowerCase();
+      return withinCat && hay.includes(q);
+    }
+
+    function updateView(){
+      const filtered = PROJECTS.filter(matches);
+      render(filtered);
+    }
+
+    /* ======= chips + search handlers ======= */
+    chips.addEventListener('click', e => {
+      const btn = e.target.closest('button.chip');
+      if(!btn) return;
+      document.querySelectorAll('.chip').forEach(c => { c.classList.remove('active'); c.setAttribute('aria-selected','false'); });
+      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+      activeCategory = btn.dataset.cat;
+      updateView();
+    });
+
+    search.addEventListener('input', e => {
+      query = e.target.value;
+      updateView();
+    });
+
+    /* ======= reveal animation ======= */
+    function revealOnScroll(){
+      const cards = document.querySelectorAll('.card');
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(en => {
+          if(en.isIntersecting){ en.target.classList.add('reveal'); obs.unobserve(en.target); }
+        });
+      }, {threshold: 0.12});
+      cards.forEach(c => io.observe(c));
+    }
+
+    /* ======= Modal behavior (accessible) ======= */
+    const backdrop = document.getElementById('backdrop');
+    const modalMedia = document.getElementById('modalMedia');
+    const caseTitle = document.getElementById('caseTitle');
+    const caseSummary = document.getElementById('caseSummary');
+    const caseChallenge = document.getElementById('caseChallenge');
+    const caseApproach = document.getElementById('caseApproach');
+    const caseImpact = document.getElementById('caseImpact');
+    const caseDemo = document.getElementById('caseDemo');
+
+    let lastFocused = null;
+
+    function openModal(id){
+      const p = PROJECTS.find(x => x.id === id); if(!p) return;
+      lastFocused = document.activeElement;
+      modalMedia.innerHTML = '';
+      const img = document.createElement('img'); img.src = p.img; img.alt = p.title; img.style.width='100%'; img.style.height='100%'; img.style.objectFit='cover';
+      img.addEventListener('error', ()=> img.src = placeholderSVG(p.title));
+      modalMedia.appendChild(img);
+
+      caseTitle.textContent = p.title;
+      caseSummary.textContent = p.summary;
+      caseChallenge.textContent = p.challenge;
+      caseApproach.textContent = p.approach;
+      caseImpact.textContent = p.impact;
+      caseDemo.style.display = p.demo && p.demo !== '#' ? 'inline-block' : 'none';
+      if(p.demo && p.demo !== '#') caseDemo.href = p.demo;
+
+      backdrop.style.display = 'flex';
+      backdrop.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('closeModal').focus();
+
+      // simple focus trap
+      trapFocus(backdrop);
+    }
+
+    function closeModal(){
+      backdrop.style.display = 'none';
+      backdrop.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      if(lastFocused) lastFocused.focus();
+    }
+
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('caseClose').addEventListener('click', closeModal);
+    backdrop.addEventListener('click', (e) => { if(e.target === backdrop) closeModal(); });
+    window.addEventListener('keydown', (e) => { if(e.key === 'Escape' && backdrop.style.display === 'flex') closeModal(); });
+
+    function trapFocus(container){
+      const focusable = Array.from(container.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'))
+        .filter(el => el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+      if(focusable.length === 0) return;
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      container.addEventListener('keydown', function fn(e){
+        if(e.key !== 'Tab') return;
+        if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      });
+    }
+
+    /* ======= Theme toggle (persistent) ======= */
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('ba-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.setAttribute('aria-pressed', savedTheme === 'light');
+
+    themeToggle.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('ba-theme', next);
+      themeToggle.setAttribute('aria-pressed', next === 'light');
+    });
+
+    /* ======= contact form -> mailto (lightweight fallback) ======= */
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(contactForm);
+      const name = encodeURIComponent(fd.get('name') || '');
+      const email = encodeURIComponent(fd.get('email') || '');
+      const subject = encodeURIComponent(fd.get('subject') || 'Inquiry from portfolio');
+      const message = encodeURIComponent(fd.get('message') || '');
+      const body = encodeURIComponent(`Name: ${decodeURIComponent(name)}%0D%0AEmail: ${decodeURIComponent(email)}%0D%0A%0D%0A${decodeURIComponent(message)}`);
+      window.location.href = `mailto:kwasiboatenga@outlook.com?subject=${subject}&body=${body}`;
+    });
+
+    /* init */
+    document.getElementById('year').textContent = new Date().getFullYear();
+    updateView();
+  </script>
+</body>
+</html>
