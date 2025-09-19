@@ -6,6 +6,9 @@ It features a clean design, smooth animations, and a dark/light mode toggle for 
 
 ---
 
+![Main Page](imgs/page_screenshort.png)
+
+
 ## Features
 
 - **Hero Section**: Professional introduction with a tagline and call-to-action.
